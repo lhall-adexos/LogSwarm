@@ -1,15 +1,13 @@
 {
-  "name": "electron-boilerplate",
-  "productName": "Electron Boilerplate",
-  "description": "Starter for your Electron application",
+  "name": "logswarm",
+  "productName": "LogSwarm",
+  "description": "Monitor your graylog data",
   "version": "0.0.0",
-  "author": "Mr. Gumby <mr.gumby@example.com>",
-  "copyright": "© 2016, Gumby inc.",
-  "homepage": "http://example.com",
+  "author": "Loïc HALL <lhall@adexos.fr>",
   "license": "MIT",
   "main": "app/background.js",
   "build": {
-    "appId": "com.example.electron-boilerplate",
+    "appId": "fr.adexos.logswarm",
     "files": [
       "app/**/*",
       "node_modules/**/*",
