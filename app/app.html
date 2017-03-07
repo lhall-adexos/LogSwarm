@@ -2,8 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Electron Boilerplate</title>
+    <title>LogSwarm</title>
 
+    <link href="photon/css/photon.css" rel="stylesheet" type="text/css">
     <link href="stylesheets/main.css" rel="stylesheet" type="text/css">
 
     <script src="helpers/context_menu.js"></script>
@@ -17,14 +18,40 @@
     <script src="http://localhost:35729/livereload.js"></script>
     <!-- end:build -->
 
-    <div class="container">
-        <h1 id="greet"></h1>
-        <p class="subtitle">
-            Welcome to <a href="http://electron.atom.io" class="js-external-link">Electron</a> app running on this magnificent <strong id="platform-info"></strong> machine.
-        </p>
-        <p class="subtitle">
-            You are in <strong id="env-name"></strong> environment.
-        </p>
+    <div class="window">
+        <div class="window-content">
+            <div class="pane-group">
+                <div class="pane-mini sidebar padded-more">
+                    <span class="icon icon-archive"></span>
+                </div>
+                <div class="pane">
+                    <div class="padded-more">
+                        <h1>Welcome to LogSwarm !</h1>
+
+                        <p>Please add a new Graylog stream. Note that you will need the API credentials to fetch data.</p>
+
+                        <form>
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="email" class="form-control" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <label>URI</label>
+                                <input type="uri" class="form-control" placeholder="http://graylog.org/api/">
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-form btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>

@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "fs-jetpack": "^0.10.2",
+    "nedb": "^1.8.0",
     "request": "^2.80.0"
   },
   "devDependencies": {
