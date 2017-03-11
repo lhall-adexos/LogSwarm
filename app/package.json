@@ -11,7 +11,9 @@
   },
   "license": "MIT",
   "dependencies": {
+    "cryptr": "^2.0.0",
     "graylog-api": "^1.1.4",
-    "nedb": "^1.8.0"
+    "nedb": "^1.8.0",
+    "request": "^2.81.0"
   }
 }

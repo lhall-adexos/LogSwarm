@@ -1,14 +1,21 @@
 // @flow
 import React, {Component} from 'react';
-import {Link} from 'react-router';
+import { Router, hashHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
+import configureStore from '../../store/configureStore';
 import TextInput from './TextInput'
 import PasswordInput from './PasswordInput'
+import {streamsDb} from '../../helpers/Datastore';
+
+const store = configureStore();
+const history = syncHistoryWithStore(hashHistory, store);
 
 export default class StreamForm extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            formSent: false,
             username: '',
             password: '',
             uri: '',
@@ -23,23 +30,29 @@ export default class StreamForm extends Component {
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
 
-        console.log(this.state);
-
         this.setState({
             [name]: value
         });
     }
 
     handleSubmit(event) {
-        console.log('Validate form');
+
+        var valid = true;
 
         for (var ref in this.refs) {
             var state = this.refs[ref].state;
-            console.log(state);
             if (state.required) {
                 this.validateRequired(this.refs[ref]);
             }
+            if (state.valid == false) {
+                valid = false;
+            }
         }
+
+        if (valid) {
+            this.saveData();
+        }
+
         event.preventDefault();
     }
 
@@ -62,58 +75,74 @@ export default class StreamForm extends Component {
     }
 
     saveData() {
-
+        var data = this.state;
+        data.streamJustCreated = true;
+        var doc = {
+            data
+        };
+        // Save data and move user to the new stream page
+        streamsDb.loadDatabase(function (err) {
+            streamsDb.insert(doc, function (err, newDoc) {
+                if (newDoc._id) {
+                    console.log('New data inserted : ' + newDoc._id);
+                    history.push('/stream/' + newDoc._id);
+                }
+            });
+        });
     }
 
     render() {
-        return <form id="StreamForm" onSubmit={(e) => this.handleSubmit(e)}>
-            <div className="form-group">
-                <TextInput
-                    ref="username"
-                    text="Username"
-                    uniqueName="username"
-                    required={true}
-                    validate={() => this.commonValidate()}
-                    onChange={this.handleInputChange}
-                    />
-            </div>
-            <div className="form-group">
-                <label>Password</label>
-                <PasswordInput
-                    ref="password"
-                    text="Password"
-                    uniqueName="password"
-                    required={true}
-                    validate={() => this.commonValidate()}
-                    onChange={this.handleInputChange}
-                />
-            </div>
-            <div className="form-group">
-                <label>URI</label>
-                <TextInput
-                    ref="uri"
-                    text="https://graylog.org/api/"
-                    uniqueName="uri"
-                    required={true}
-                    validate={() => this.commonValidate()}
-                    onChange={this.handleInputChange}
-                />
-            </div>
-            <div className="form-group">
-                <label>Stream</label>
-                <TextInput
-                    ref="stream"
-                    text="Stream ID"
-                    uniqueName="stream"
-                    required={true}
-                    validate={() => this.commonValidate()}
-                    onChange={this.handleInputChange}
-                />
-            </div>
+        return <div className="form-container">
 
-            <div className="form-actions">
-                <button type="submit" className="btn btn-form btn-primary">Save</button>
-            </div>
-        </form>;
+            <form id="StreamForm" onSubmit={(e) => this.handleSubmit(e)}>
+                <div className="form-group">
+                    <TextInput
+                        ref="username"
+                        text="Username"
+                        uniqueName="username"
+                        required={true}
+                        validate={() => this.commonValidate()}
+                        onChange={this.handleInputChange}
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Password</label>
+                    <PasswordInput
+                        ref="password"
+                        text="Password"
+                        uniqueName="password"
+                        required={true}
+                        validate={() => this.commonValidate()}
+                        onChange={this.handleInputChange}
+                    />
+                </div>
+                <div className="form-group">
+                    <label>URI</label>
+                    <TextInput
+                        ref="uri"
+                        text="https://graylog.org/api/"
+                        uniqueName="uri"
+                        required={true}
+                        validate={() => this.commonValidate()}
+                        onChange={this.handleInputChange}
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Stream</label>
+                    <TextInput
+                        ref="stream"
+                        text="Stream ID"
+                        uniqueName="stream"
+                        required={true}
+                        validate={() => this.commonValidate()}
+                        onChange={this.handleInputChange}
+                    />
+                </div>
+
+                <div className="form-actions">
+                    <button type="submit" className="btn btn-form btn-primary">Save</button>
+                </div>
+            </form>
+        </div>;
     }
 }

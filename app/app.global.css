@@ -28,3 +28,30 @@ input {
 .error_container {
     color: red;
 }
+
+.msg-info, .msg-success, .msg-warning, .msg-error {
+    margin: 10px 0px;
+    padding:12px;
+
+}
+.msg-info {
+    color: #00529B;
+    background-color: #BDE5F8;
+}
+.msg-success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}
+.msg-warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+.msg-error {
+    color: #D8000C;
+    background-color: #FFBABA;
+}
+.msg-info i, .msg-success i, .msg-warning i, .msg-error i {
+    margin:10px 22px;
+    font-size:2em;
+    vertical-align:middle;
+}
