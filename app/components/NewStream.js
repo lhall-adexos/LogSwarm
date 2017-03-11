@@ -1,10 +1,11 @@
 // @flow
 import React, {Component} from 'react';
 import {Link} from 'react-router';
-import styles from './Common.css';
 import Sidebar from './Sidebar'
+import StreamForm from './form/StreamForm';
+import styles from './Common.css';
 
-export default class Home extends Component {
+export default class NewStream extends Component {
     render() {
         return (
             <div>
@@ -12,13 +13,12 @@ export default class Home extends Component {
                     <div className="window">
                         <div className="window-content">
                             <div className="pane-group">
-                                <Sidebar />
+                                <Sidebar/>
                                 <div className="pane">
                                     <div className="padded-more">
-                                        <h1>Welcome to LogSwarm !</h1>
+                                        <h1>Add a stream</h1>
 
-                                        <p>
-                                            Please add a new Graylog stream. Note that you will need the API credentials to fetch data.</p>
+                                        <StreamForm/>
                                     </div>
                                 </div>
                             </div>

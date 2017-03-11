@@ -1,0 +1,15 @@
+.add-stream {
+    cursor: pointer;
+    position: relative;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    line-height: 0; }
+.add-stream span {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    height: 100%;
+    display: block;
+    width: 100%;
+    line-height: 60px; }
