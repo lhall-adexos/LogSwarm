@@ -18,3 +18,13 @@
     border-left-color: #2d2c2c; }
 .pane h1 {
     margin-top: 0; }
+
+input {
+    color: black;
+}
+.invisible {
+    display: none;
+}
+.error_container {
+    color: red;
+}

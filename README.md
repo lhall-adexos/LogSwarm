@@ -1,6 +1,8 @@
 # LogSwarm
 
-This Electron app is based on the [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate), check it if you need more informations.
+This [Electron](http://electron.atom.io/) app is based on the [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate), check it if you need more informations.
+
+It ships with [React](https://facebook.github.io/react/), [Redux](https://github.com/reactjs/redux), [React Router](https://github.com/reactjs/react-router), [Webpack](http://webpack.github.io/docs/), [React Transform HMR](https://github.com/gaearon/react-transform-hmr) .
 
 ## Install
 
@@ -40,3 +42,12 @@ or run two servers with one command
 ```bash
 $ npm run dev
 ```
+
+## Getting started
+
+Before jumping in, you might want to have a look at the following resources :
+
+- [Photon](http://photonkit.com/) (CSS library)
+- [Request](https://www.npmjs.com/package/request) (Simple HTTP client library)
+- [What is JSX](https://facebook.github.io/react/docs/jsx-in-depth.html)
+- [Graylog API](https://www.npmjs.com/package/graylog-api)

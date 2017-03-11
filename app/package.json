@@ -11,5 +11,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "graylog-api": "^1.1.4",
+    "nedb": "^1.8.0"
   }
 }
