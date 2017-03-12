@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import styles from './StreamButton.css';
+import image from '../../images/circle-blank.svg';
 import {streamsDb} from '../../helpers/Datastore';
 
 export default class StreamButtons extends Component {
@@ -24,7 +25,7 @@ export default class StreamButtons extends Component {
                     let button = streams[i];
                     console.log(button);
                     _this.buttons.push(<Link key={'stream' + button._id} className={styles['stream']} to={'/stream/' + button._id}>
-                        <img src="./images/circle-blank.svg"/>
+                        <img src={image} />
                         <span>{button.data.stream.charAt(0)}</span>
                     </Link>);
                 }
