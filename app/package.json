@@ -4,6 +4,10 @@
   "version": "0.0.1",
   "description": "Electron application for handling Graylog streams with style",
   "main": "./main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lhall-adexos/LogSwarm.git"
+  },
   "author": {
     "name": "Loïc HALL",
     "email": "lhall@adexos.fr",
