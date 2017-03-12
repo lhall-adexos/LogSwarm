@@ -29,8 +29,8 @@
   },
   "browserslist": "electron 1.4",
   "build": {
-    "productName": "ElectronReact",
-    "appId": "org.develar.ElectronReact",
+    "productName": "LogSwarm",
+    "appId": "fr.adexos.LogSwarm",
     "category": "public.app-category.tools",
     "dmg": {
       "contents": [
