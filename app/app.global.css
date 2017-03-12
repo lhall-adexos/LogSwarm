@@ -51,7 +51,7 @@ input {
     background-color: #FFBABA;
 }
 .msg-info i, .msg-success i, .msg-warning i, .msg-error i {
-    margin:10px 22px;
+    margin:0 5px;
     font-size:2em;
     vertical-align:middle;
 }
