@@ -1,7 +1,7 @@
 {
   "name": "LogSwarm",
   "productName": "LogSwarm",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Electron application for handling Graylog streams with style",
   "main": "./main.js",
   "repository": {
