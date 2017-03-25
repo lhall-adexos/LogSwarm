@@ -19,7 +19,7 @@
 .pane h1 {
     margin-top: 0; }
 
-input {
+input, select, textarea {
     color: black;
 }
 .invisible {

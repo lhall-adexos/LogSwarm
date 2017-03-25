@@ -9,7 +9,7 @@ export default class PasswordInput extends TextInput {
         this.state = {
             required: (props.required),
             isEmpty: true,
-            value: '',
+            value: (props.value),
             valid: false,
             errorMessage: "Input is invalid",
             emptyMessage: "Input is required",

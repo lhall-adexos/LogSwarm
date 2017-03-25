@@ -8,8 +8,8 @@ export default class TextInput extends Component {
         this.state = {
             required: (props.required),
             isEmpty: true,
-            value: '',
-            valid: false,
+            value: (props.value),
+            valid: (props.valid) ? props.valid : false,
             errorMessage: "Input is invalid",
             emptyMessage: "Input is required",
             errorVisible: false
@@ -75,9 +75,9 @@ export default class TextInput extends Component {
 
     handleBlur(event) {
         //Complete final validation from parent element when complete
-        //var valid = this.props.validate(event.target.value);
+        var valid = this.props.validate(event.target.value);
         //pass the result to the local validation element for displaying the error
-        //this.validation(event.target.value, valid);
+        this.validation(event.target.value, valid);
     }
 
     render() {

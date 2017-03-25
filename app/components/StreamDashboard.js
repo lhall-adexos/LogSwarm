@@ -8,6 +8,7 @@ export default class Stream extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            updated: new Date().getTime(),
             streamData: props.streamData,
             clusterInfo: props.clusterInfo,
             clusterStats: {}
@@ -63,7 +64,7 @@ export default class Stream extends Component {
         }
 
         return (
-            <div id={'stream-' + this.props.streamId} className="stream-dashboard">
+            <div id={'stream-' + this.props.streamId} className="stream-dashboard" key={'last-updated-' + this.state.updated}>
                 {successMessage}
                 <h1>Stream {this.props.streamData.stream}</h1>
                 <h3>Cluster health : {this.state.clusterInfo.lb_status}</h3>
