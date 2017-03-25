@@ -113,21 +113,33 @@ export default class StreamForm extends Component {
             return false;
         }
 
+        var _this = this;
         graylogApi.getStream(null, { // path
-            streamId: this.state.stream
+            streamId: _this.state.stream
         }, function (err, data) { // callback
             if (!err) {
-                var storeData = {
-                    streamInfo: data
+                console.log("Stream data retrieved");
+                var stream = {
+                    info: data,
+                    credentials: {
+                        uri: _this.state.uri,
+                        username: _this.state.username,
+                        password: _this.state.password
+                    }
                 };
-                storeData.streamJustCreated = true;
 
                 var doc = {
-                    storeData
+                    stream
                 };
                 // Save data and move user to the new stream page
                 streamsDb.loadDatabase(function (err) {
+                    console.log("Error found", err);
                     streamsDb.insert(doc, function (err, newDoc) {
+                        if (err) {
+                            console.log("Error found", err);
+                        } else {
+                            console.log("No errors");
+                        }
                         if (newDoc._id) {
                             console.log('New data inserted : ' + newDoc._id);
                             history.push('/stream/' + newDoc._id);
@@ -135,8 +147,10 @@ export default class StreamForm extends Component {
                         }
                     });
                 });
+            } else {
+                console.log(err);
             }
-        })
+        });
         return false;
     }
 

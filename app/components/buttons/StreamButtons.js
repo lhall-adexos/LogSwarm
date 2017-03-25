@@ -23,10 +23,9 @@ export default class StreamButtons extends Component {
                 streams = docs;
                 for (var i=0; i < docs.length; i++) {
                     let button = streams[i];
-                    console.log(button);
                     _this.buttons.push(<Link key={'stream' + button._id} className={styles['stream']} to={'/stream/' + button._id}>
                         <img src={image} />
-                        <span>{button.data.stream.charAt(0)}</span>
+                        <span>{button.stream.info.title.charAt(0)}</span>
                     </Link>);
                 }
                 _this.setState({key: Math.random()});
