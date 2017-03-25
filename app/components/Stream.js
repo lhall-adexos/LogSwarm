@@ -1,6 +1,5 @@
 // @flow
 import React, {Component} from 'react';
-import Router, {Link} from 'react-router';
 import Sidebar from './Sidebar'
 import getGraylogApi from '../helpers/GetGraylogApi';
 import {streamsDb} from '../helpers/Datastore';
@@ -13,7 +12,8 @@ export default class Stream extends Component {
         this.state = {
             key: 'waiting-' + props.streamId,
             data: false,
-            streamInfo: false
+            streamInfo: false,
+            graylogApi: null
         };
         this.fetchClusterInfo();
     }
@@ -32,6 +32,9 @@ export default class Stream extends Component {
                     doc.stream.credentials.uri,
                     doc.stream.credentials.username,
                     doc.stream.credentials.password);
+
+                _this.state.graylogApi = graylogApi;
+
                 graylogApi.getStream(null, { // path
                     streamId: doc.stream.info.id
                 }, function (err, data) { // callback
@@ -59,6 +62,7 @@ export default class Stream extends Component {
             streamOutput = <StreamDashboard
                 streamId={this.props.streamId}
                 streamInfo={this.state.streamInfo}
+                graylogApi={this.state.graylogApi}
             />
         }
 
