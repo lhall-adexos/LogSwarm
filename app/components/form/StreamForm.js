@@ -113,16 +113,14 @@ export default class StreamForm extends Component {
             return false;
         }
 
-        let streamInfo = graylogApi.getStream(null, { // path
+        graylogApi.getStream(null, { // path
             streamId: this.state.stream
         }, function (err, data) { // callback
             if (!err) {
-                console.log("Stream info retrieved", data);
                 var storeData = {
                     streamInfo: data
                 };
                 storeData.streamJustCreated = true;
-                console.log(storeData);
 
                 var doc = {
                     storeData
