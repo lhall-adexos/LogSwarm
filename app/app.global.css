@@ -2,6 +2,15 @@
 @import "~bulma/css/bulma.css";
 @import "css/photon.css";
 
+/* Customize Bulma Theme */
+.box {
+    background-color: #414142;
+}
+.title {
+    color: white;
+}
+
+/* Customer Photon Theme */
 .window {
     background-color: #232C39;
     color: #ededed; }

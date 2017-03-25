@@ -9,7 +9,7 @@ export default class Stream extends Component {
         this.state = {
             graylogApi: props.graylogApi,
             intervalId: null,
-            updated: new Date().getTime(),
+            updated: '',
             streamInfo: props.streamInfo,
             processedData: {},
             liveData: {}
@@ -40,28 +40,34 @@ export default class Stream extends Component {
         graylog.searchRelative({ // parameters
             query: 'streams:' + self.state.streamInfo.id,
             range: '7200'
-        }, function(err, data) { // callback
+        }, function (err, data) { // callback
             if (!err) {
                 // Process data
                 self.processStreamData(data);
                 // Update view
                 self.setState({
                     liveData: data,
-                    updated: new Date().getTime()
+                    updated: self.getFormattedTime()
                 });
             }
         });
+    }
+
+    getFormattedDate() {
+        var year = new Date().getFullYear();
+    }
+
+    getFormattedTime() {
+        return new Date().toLocaleTimeString();
     }
 
     /**
      * @todo move to helper
      */
     processStreamData(data) {
-        console.log(this.state);
-        console.log("Processing", data);
         var criticalCount = 0;
 
-        for (var i=0; i<data.messages.length; i++) {
+        for (var i = 0; i < data.messages.length; i++) {
             var message = data.messages[i].message;
             if (message.level <= 1) {
                 criticalCount = criticalCount + 1;
@@ -79,7 +85,7 @@ export default class Stream extends Component {
             // @todo update database
             this.state.streamInfo.streamJustCreated = false;
             messages = <div className="msg-success">
-                <i className="fa fa-check"></i>
+                <i className="fa fa-check" />
                 Graylog stream was successfully created !
             </div>;
         }
@@ -87,22 +93,28 @@ export default class Stream extends Component {
         return (
             <div id={'stream-' + this.props.streamId} className="stream-dashboard">
                 {messages}
-                <h1>Stream {this.props.streamInfo.title}</h1>
-                <p>This is a stream</p>
-                <div className="columns">
-                    <div className="column">
-                        Last update : {this.state.updated}
+                <h1 className="title is-3">Stream {this.props.streamInfo.title}</h1>
+
+                <nav className="level">
+                    <div className="level-item has-text-centered">
+                        <div>
+                            <p className="heading">Last update</p>
+                            <p className="title">{this.state.updated}</p>
+                        </div>
                     </div>
-                    <div className="column">
-                        Messages : {this.state.liveData.total_results}
+                    <div className="level-item has-text-centered">
+                        <div>
+                            <p className="heading">Total messages</p>
+                            <p className="title">{this.state.liveData.total_results}</p>
+                        </div>
                     </div>
-                    <div className="column">
-                        Critical : {this.state.processedData.criticalCount}
+                    <div className="level-item has-text-centered">
+                        <div>
+                            <p className="heading">Critical</p>
+                            <p className="title">{this.state.processedData.criticalCount}</p>
+                        </div>
                     </div>
-                    <div className="column">
-                        Fourth column
-                    </div>
-                </div>
+                </nav>
             </div>
         );
     }
