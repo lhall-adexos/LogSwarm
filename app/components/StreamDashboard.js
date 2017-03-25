@@ -1,5 +1,6 @@
 // @flow
 import React, {Component} from 'react';
+import StreamMessages from './StreamMessages';
 
 export default class Stream extends Component {
 
@@ -18,19 +19,11 @@ export default class Stream extends Component {
 
     componentDidMount() {
         var intervalId = setInterval(this.getFreshData.bind(this), 2000);
-        // store intervalId in the state so it can be accessed later:
         this.setState({intervalId: intervalId});
     }
 
     componentWillUnmount() {
-        // use intervalId from the state to clear the interval
         clearInterval(this.state.intervalId);
-    }
-
-    timer() {
-        console.log(this.state);
-        // setState method is used to update the state
-        this.setState({currentCount: this.state.currentCount - 1});
     }
 
     getFreshData() {
@@ -39,7 +32,8 @@ export default class Stream extends Component {
 
         graylog.searchRelative({ // parameters
             query: 'streams:' + self.state.streamInfo.id,
-            range: '7200'
+            range: '3600',
+            limit: 12
         }, function (err, data) { // callback
             if (!err) {
                 // Process data
@@ -53,10 +47,6 @@ export default class Stream extends Component {
         });
     }
 
-    getFormattedDate() {
-        var year = new Date().getFullYear();
-    }
-
     getFormattedTime() {
         return new Date().toLocaleTimeString();
     }
@@ -66,15 +56,18 @@ export default class Stream extends Component {
      */
     processStreamData(data) {
         var criticalCount = 0;
+        var messages = [];
 
         for (var i = 0; i < data.messages.length; i++) {
             var message = data.messages[i].message;
+            messages.push(message);
             if (message.level <= 1) {
                 criticalCount = criticalCount + 1;
             }
         }
 
         this.state.processedData.criticalCount = criticalCount;
+        this.state.processedData.messages = messages;
     }
 
     render() {
@@ -115,6 +108,11 @@ export default class Stream extends Component {
                         </div>
                     </div>
                 </nav>
+
+                <StreamMessages
+                    messages={this.state.processedData.messages}
+                />
+
             </div>
         );
     }

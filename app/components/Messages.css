@@ -1,0 +1,15 @@
+.status-0 {
+    background-color: #ff3860;
+    color: white;
+}
+.status-1 {
+    background-color: #ff859b;
+}
+.status-7 {
+    color: darkgray;
+}
+.status-0:hover,
+.status-1:hover
+{
+    color: black;
+}
