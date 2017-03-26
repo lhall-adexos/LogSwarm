@@ -22,7 +22,7 @@ export default class StreamMessages extends Component {
             this.state.messages = {};
         }
         if (nextProps.messages === undefined) {
-            nextProps.messages = {};
+            return false;
         }
         return (hash(this.state.messages) != hash(nextProps.messages));
     }

@@ -15,10 +15,10 @@ export default class Stream extends Component {
             streamInfo: false,
             graylogApi: null
         };
-        this.fetchClusterInfo();
+        this.fetchStreamInfo();
     }
 
-    fetchClusterInfo() {
+    fetchStreamInfo() {
         console.log(this.props);
         let _this = this;
         streamsDb.loadDatabase(function (err) {

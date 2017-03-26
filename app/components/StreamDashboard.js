@@ -20,6 +20,7 @@ export default class Stream extends Component {
     componentDidMount() {
         var intervalId = setInterval(this.getFreshData.bind(this), 2000);
         this.setState({intervalId: intervalId});
+        this.getFreshData();
     }
 
     componentWillUnmount() {
@@ -32,6 +33,7 @@ export default class Stream extends Component {
 
         graylog.searchRelative({ // parameters
             query: 'streams:' + self.state.streamInfo.id,
+            filter: 'streams:' + self.state.streamInfo.id,
             range: '3600',
             limit: 12
         }, function (err, data) { // callback
@@ -55,6 +57,7 @@ export default class Stream extends Component {
      * @todo move to helper
      */
     processStreamData(data) {
+        console.log(data);
         var criticalCount = 0;
         var messages = [];
 

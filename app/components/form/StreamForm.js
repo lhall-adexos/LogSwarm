@@ -160,7 +160,7 @@ export default class StreamForm extends Component {
         let validationText = 'Load streams';
         if (this.state.streams.length > 0) {
             console.log('Streams found');
-            var options = [];
+            var options = [{id: null, label: 'Choose a stream'}];
             for (var i = 0; i < this.state.streams.length; i++) {
                 console.log(this.state.streams[i]);
                 var stream = this.state.streams[i];
