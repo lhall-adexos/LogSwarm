@@ -19,6 +19,7 @@
     "cryptr": "^2.0.0",
     "graylog-api": "^1.1.4",
     "nedb": "^1.8.0",
+    "object-hash": "^1.1.7",
     "request": "^2.81.0"
   }
 }
