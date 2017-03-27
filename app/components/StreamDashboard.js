@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import StreamMessages from './StreamMessages';
 
-export default class Stream extends Component {
+export default class StreamDashboard extends Component {
 
     constructor(props) {
         console.log('constructor')
